@@ -1,7 +1,9 @@
 package com.maple.shiro;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.maple.base.Constant;
 import com.maple.entity.Menu;
+import com.maple.entity.Role;
 import com.maple.entity.User;
 import com.maple.entity.UserToRole;
 import com.maple.exception.UnauthorizedException;
@@ -58,13 +60,11 @@ public class MyRealm extends AuthorizingRealm {
         UserToRole userToRole = userToRoleService.selectByUserNo(user.getUserNo());
 
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-        /*
         Role role = roleService.selectOne(new EntityWrapper<Role>().eq("role_code", userToRole.getRoleCode()));
         //添加控制角色级别的权限
         Set<String> roleNameSet = new HashSet<>();
         roleNameSet.add(role.getRoleName());
         simpleAuthorizationInfo.addRoles(roleNameSet);
-        */
         //控制菜单级别按钮  类中用@RequiresPermissions("user:list") 对应数据库中code字段来控制controller
         ArrayList<String> pers = new ArrayList<>();
         List<Menu> menuList = menuService.findMenuByRoleCode(userToRole.getRoleCode());

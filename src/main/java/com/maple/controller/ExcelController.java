@@ -49,11 +49,11 @@ public class ExcelController {
         data.put("title", "战争学院花名册");
         data.put("info", "学校统一花名册");
         // 基于模板导出Excel
-        FileOutputStream os = new FileOutputStream(new File("E://A.xlsx"));
+       /* FileOutputStream os = new FileOutputStream(new File("E://A.xlsx"));
         ExcelUtils.getInstance().exportObjects2Excel(tempPath, list, data, Student1.class, false, os);
-        os.close();
+        os.close();*/
         // 不基于模板导出Excel
-        ExcelUtils.getInstance().exportObjects2Excel(list, Student1.class, true, null, true, "E://B.xlsx");
+        ExcelUtils.getInstance().exportObjects2Excel(list, Student1.class, true, null, true, "D://B.xlsx");
         return ResponseHelper.buildResponseModel(PublicResultConstant.SUCCEED);
     }
 

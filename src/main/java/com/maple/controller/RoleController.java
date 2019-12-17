@@ -3,12 +3,15 @@ package com.maple.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.maple.base.Constant;
 import com.maple.base.PublicResultConstant;
 import com.maple.config.ResponseHelper;
 import com.maple.config.ResponseModel;
 import com.maple.entity.Role;
 import com.maple.model.RoleModel;
 import com.maple.service.IRoleService;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +37,7 @@ public class RoleController {
      */
     @GetMapping("/pageList")
     //拥有超级管理员或管理员角色的用户可以访问这个接口,换成角色控制权限,改变请看MyRealm.class
-    //@RequiresRoles(value = {Constant.RoleType.SYS_ASMIN_ROLE,Constant.RoleType.ADMIN},logical =  Logical.OR)
+    @RequiresRoles(value = {Constant.RoleType.SYS_ASMIN_ROLE,Constant.RoleType.ADMIN},logical =  Logical.OR)
     public ResponseModel<Page<Role>> getPageList(@RequestParam(name = "pageIndex", defaultValue = "1", required = false) Integer pageIndex,
                                      @RequestParam(name = "pageSize", defaultValue = "10", required = false) Integer pageSize){
         //根据姓名查分页
