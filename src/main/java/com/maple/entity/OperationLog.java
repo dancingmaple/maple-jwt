@@ -84,6 +84,12 @@ public class OperationLog extends Model<OperationLog> {
      */
     private String action;
 
+    /**
+     * 用户代理信息
+     */
+    @TableField("user_agent")
+    private String userAgent;
+
     @Override
     protected Serializable pkVal() {
         return this.operationLogId;

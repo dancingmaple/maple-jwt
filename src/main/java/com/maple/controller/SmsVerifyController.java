@@ -3,6 +3,7 @@ package com.maple.controller;
 
 import com.maple.annotation.Log;
 import com.maple.annotation.Pass;
+import com.maple.annotation.UserAgent;
 import com.maple.config.ResponseHelper;
 import com.maple.config.ResponseModel;
 import com.maple.entity.SmsVerify;
@@ -59,7 +60,7 @@ public class SmsVerifyController {
     @GetMapping("/captcha/check")
     @Pass
     public ResponseModel captchaCheck (@RequestParam String smsType,
-            @RequestParam String mobile ,@RequestParam String captcha) throws Exception{
+                                       @RequestParam String mobile , @RequestParam String captcha, @UserAgent com.maple.base.UserAgent userAgent) throws Exception{
         smsVerifyService.captchaCheck(mobile,smsType,captcha);
         return ResponseHelper.buildResponseModel(true);
     }

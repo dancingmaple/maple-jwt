@@ -121,6 +121,7 @@ CREATE TABLE `tb_operation_log` (
   `model_name` varchar(50) DEFAULT NULL COMMENT '模块名称',
   `action` varchar(50) DEFAULT NULL COMMENT '操作',
   `succeed` int(2) DEFAULT NULL COMMENT '是否成功 1:成功 2异常',
+  `user_agent` json DEFAULT NULL COMMENT '用户代理信息',
   `message` longtext COMMENT '异常堆栈信息',
   PRIMARY KEY (`operation_log_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=212 DEFAULT CHARSET=utf8 COMMENT='操作日志表';

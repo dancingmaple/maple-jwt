@@ -1,7 +1,9 @@
 package com.maple.aspect;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.maple.annotation.Log;
+import com.maple.base.UserAgent;
 import com.maple.entity.OperationLog;
 import com.maple.service.IOperationLogService;
 import com.maple.service.SpringContextBeanService;
@@ -87,6 +89,7 @@ public class RecordLogAspect extends AbstractAspectManager {
         operationLog.setLogDescription(log.description());
         operationLog.setModelName(log.modelName());
         operationLog.setAction(log.action());
+        operationLog.setUserAgent(JSON.toJSONString(UserAgent.resolveAgentInfo(request.getHeader(UserAgent.UserAgentStr))));
         if(isException){
             StringBuilder sb = new StringBuilder();
             sb.append(actionLog+" &#10; ");
